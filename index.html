@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sana Özel Bir Sayfa ❤️</title>
+    <style>
+        /* TEMEL STİL */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #fce4ec; 
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* BİRLİKTELİK SAYACI STİLİ */
+        .countdown-container {
+            margin-bottom: 25px;
+            padding: 15px 30px;
+            background-color: #ffcdd2; 
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .countdown-container h2 {
+            color: #d81b60; 
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px; 
+        }
+
+        .time-box {
+            background-color: #e91e63; 
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            min-width: 55px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            animation: breathe 2s infinite alternate; 
+        }
+
+        .time-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .time-unit {
+            font-size: 0.8em;
+            opacity: 0.9;
+        }
+
+        @keyframes breathe {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.03); }
+        }
+        /* -- SAYACI BİTİŞ -- */
+
+
+        /* Fotoğraf Stili */
+        .main-image-container {
+            margin-bottom: 30px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            height: auto;
+            z-index: 10;
+        }
+
+        .main-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+        }
+
+        /* Ana Mesaj Kutusu */
+        .message-box {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 30px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            animation: pulse 1.5s infinite alternate;
+            max-width: 90%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        
+        /* ŞARKI LİNK KUTUSU (YENİ EKLENDİ) */
+        .music-link-box {
+            background-color: #ff85a2; /* Pembe kutu */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-top: 20px;
+            z-index: 10;
+            max-width: 90%;
+        }
+
+        .music-link-box p {
+            font-size: 1.1em;
+            color: #4a148c;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .music-link-box a {
+            display: inline-block;
+            background-color: #8e24aa; /* Mor buton */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .music-link-box a:hover {
+            background-color: #6a1b9a;
+        }
+
+
+        /* AKROSTİŞ ŞİİR STİLİ */
+        .acrostic-box {
+            background-color: #f8bbd0; border: 3px dashed #8e24aa; padding: 20px; margin: 20px 0; border-radius: 15px; max-width: 90%; text-align: center; z-index: 10; box-shadow: 0 5px 15px rgba(142, 36, 170, 0.2); position: relative; overflow: hidden;
+        }
+        .acrostic-box h2 { color: #8e24aa; font-size: 1.5em; margin-top: 0; position: relative; z-index: 2; }
+        .acrostic-line { font-size: 1.1em; color: #4a148c; line-height: 1.8; position: relative; z-index: 2; }
+        .acrostic-letter { font-weight: bold; font-size: 1.3em; color: #d81b60; margin-right: 5px; }
+
+        /* LALE DEKORLARI */
+        .acrostic-box::before, .acrostic-box::after { content: '🌷'; position: absolute; font-size: 3em; color: #c2185b; opacity: 0.6; z-index: 1; }
+        .acrostic-box::before { top: -15px; left: -15px; transform: rotate(-20deg); }
+        .acrostic-box::after { bottom: -15px; right: -15px; transform: rotate(20deg); }
+        .lale-dekor { position: absolute; font-size: 2em; color: #e91e63; opacity: 0.4; z-index: 1; pointer-events: none; }
+        .lale-dekor.top-right { top: 5%; right: 5%; transform: rotate(30deg); }
+        .lale-dekor.bottom-left { bottom: 5%; left: 5%; transform: rotate(-40deg); }
+
+
+        /* UÇAN VE YANIP SÖNEN KALPLER */
+        .heart-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+        .heart { position: absolute; font-size: 2em; color: #ff69b4; opacity: 0; animation: sparkle 5s infinite; }
+        .flying-heart { position: absolute; font-size: 1.5em; color: #ff527c; animation: flyup 10s linear infinite; pointer-events: none; z-index: 3; opacity: 0; }
+        @keyframes sparkle { 0% { opacity: 0; transform: scale(1) rotate(0deg); } 50% { opacity: 0.8; transform: scale(1.3) rotate(15deg); } 100% { opacity: 0; transform: scale(1) rotate(0deg); } }
+        @keyframes flyup { 0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; } 10% { opacity: 1; } 80% { opacity: 0.8; } 100% { transform: translateY(-100vh) rotate(360deg) scale(1.5); opacity: 0; } }
+
+        /* POP-UP'LAR */
+        .popup { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); backdrop-filter: blur(5px); }
+        .popup-content { margin: 15% auto; padding: 30px; border: 5px solid #ff69b4; width: 80%; max-width: 400px; text-align: center; border-radius: 15px; animation: popin 0.5s ease-out; box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
+        .popup-text { color: #d1127e; font-size: 1.8em; font-weight: bold; }
+        
+        @media (max-width: 600px) {
+            .countdown-timer { gap: 8px; }
+            .time-box { padding: 6px 8px; min-width: 45px; }
+            .time-value { font-size: 1.2em; }
+            .time-unit { font-size: 0.7em; }
+            .music-link-box { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="heart-container">
+        <span class="heart">❤️</span>
+        <span class="heart">💖</span>
+        <span class="heart">❤️</span>
+        <span class="heart">💖</span>
+        <span class="heart">❤️</span>
+        <span class="heart">💖</span>
+        <span class="heart">❤️</span>
+        <span class="heart">💖</span>
+    </div>
+
+    <div class="flying-hearts-container"></div>
+
+    <div class="countdown-container">
+        <h2>Birlikteliğimizin İlk Gününden Beri</h2>
+        <div id="countdown-timer" class="countdown-timer">
+            </div>
+    </div>
+    <div class="main-image-container">
+        <img src="https://i.ibb.co/LdDdbLhR/2025-11-17-20-22-44-770.jpg" alt="Sevgilim" class="main-image">
+    </div>
+
+    <div class="message-box">
+        <h1>Sevgilim İçin...</h1>
+        <p>Bu sayfa sadece senin için. Seni çok seviyorum! ❤️</p>
+    </div>
+    
+    <div class="acrostic-box">
+        <span class="lale-dekor top-right">🌷</span> 
+        <h2>🌷 Benim Bitanecik Yusuf'uma 🌷</h2>
+        <div class="acrostic-line">
+            <span class="acrostic-letter">Y</span>üreğimde açan en güzel baharsın sen,
+        </div>
+        <div class="acrostic-line">
+            <span class="acrostic-letter">U</span>mut dolu yarınlarımın tek adresi.
+        </div>
+        <div class="acrostic-line">
+            <span class="acrostic-letter">S</span>evdamız, her gün yeşeren bir lale gibi açar.
+        </div>
+        <div class="acrostic-line">
+            <span class="acrostic-letter">U</span>nutulmaz anılar biriktirdiğimiz her bir nefeste,
+        </div>
+        <div class="acrostic-line">
+            <span class="acrostic-letter">F</span>ırtınada sığınak, huzur dolu limanımsın.
+        </div>
+        <span class="lale-dekor bottom-left">🌷</span> 
+    </div>
+
+    <div class="music-link-box">
+        <p>Benden Sana Gelsin... 🎶</p>
+        <a href="https://open.spotify.com/track/4jVn8Pj176FqRk9o5Y1oD2?si=26210214a1e94119" target="_blank">
+            İbrahim Tatlıses - Tamam Aşkım (Dinle)
+        </a>
+    </div>
+    
+    <div id="lovePopup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">×</span>
+            <p class="popup-text">SENİ SEVİYORUM YUSUF! 😍</p>
+            <p>Hayatımda olduğun için çok mutluyum.</p>
+        </div>
+    </div>
+
+    <script>
+        // Sayacın Başlangıç Tarihi
+        const startDate = new Date("November 4, 2024 00:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = now - startDate;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown-timer").innerHTML = `
+                <div class="time-box"><span class="time-value">${days}</span><span class="time-unit">GÜN</span></div>
+                <div class="time-box"><span class="time-value">${hours}</span><span class="time-unit">SAAT</span></div>
+                <div class="time-box"><span class="time-value">${minutes}</span><span class="time-unit">DAKİKA</span></div>
+                <div class="time-box"><span class="time-value">${seconds}</span><span class="time-unit">SANİYE</span></div>
+            `;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); 
+        
+        // UÇAN KALPLERİ OLUŞTURMA FONKSİYONU
+        function createFlyingHearts() {
+            const container = document.querySelector('.flying-hearts-container');
+            const colors = ['#ff527c', '#ff85a2', '#ffbed3', '#ffc0cb'];
+            const heartIcons = ['❤️', '💖', '💗', '💕'];
+
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('span');
+                heart.classList.add('flying-heart');
+                heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 5 + 7) + 's';
+                heart.style.animationDelay = (Math.random() * 10) + 's';
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.fontSize = (Math.random() * 1.5 + 1) + 'em';
+                container.appendChild(heart);
+            }
+        }
+
+        // Pop-up fonksiyonları (Müzik butonu kaldırıldığı için playMusic kaldırıldı)
+        function openPopup() {
+            document.getElementById('lovePopup').style.display = 'block';
+        }
+        function closePopup() {
+            document.getElementById('lovePopup').style.display = 'none';
+        }
+
+        window.onload = function() {
+            setTimeout(openPopup, 3000);
+            createFlyingHearts();
+        };
+
+        window.onclick = function(event) {
+            const popup = document.getElementById('lovePopup');
+            if (event.target == popup) {
+                closePopup();
+            }
+        }
+    </script>
+
+</body>
+</html>
